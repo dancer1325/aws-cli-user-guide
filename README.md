@@ -10,15 +10,14 @@ You can find the corresponding content for this repo on [the AWS Documentation w
 
 ## AWS CLI User Guide
 
-The open source version of the AWS CLI version 2 User Guide. See the ``v1`` branch for the version 1 guide.
-
-We welcome your contributions to improving this guide. All submissions will be reviewed for technical accuracy and possibly reworded to comply with style guidelines required by our editorial team.
-
-Note: this repository is generated automatically from the .XML-based source for this documentation. When you submit a pull request, the changes must be transferred to the .XML and then they will show up in this repo when the source is rebuilt. When we mark a PR as "merged", that means that the transfer process has occured and you will shortly see the fix in the .md files in this repo.
-
-As an alternative to filing PRs in this repo, you can click on the Feedback link that is on every page of the documentation. That generates an internal service ticket that is sent directly to the writer of the docs. 
-
-Our goal of our documentation is to support our customers' use of our tools and services. We want you to be successful. If our docs are not helping you achieve your goals, then please let us know where we can do a better job. Thank you for your contributions!
+* branches
+  * main
+    * open source version of the AWS CLI version 2 User Guide
+  * v1 
+    * open source version of the AWS CLI version 1 User Guide
+* how does this repo work?
+  * from the .XML-based source for this documentation -> ".md" of this repo are generated
+  * if you submit a pull request -> changes -- must be transferred to the -- .XML
 
 ## License Summary
 
