@@ -2,32 +2,24 @@
 
 --------
 
-# Prerequisites to use the AWS CLI version 2<a name="getting-started-prereqs"></a>
-
-To access AWS services with the AWS CLI, you need an AWS account, IAM credentials, and an IAM access key pair\. When running AWS CLI commands, the AWS CLI needs to have access to those AWS credentials\. 
-
-To increase the security of your AWS account, we recommend that you do not use your root account credentials\. You should create an IAM user to provide access credentials to the tasks you'll be running in AWS\. 
+# Prerequisites to use the AWS CLI version 2<a name="getting-started-prereqs"></a> 
 
 **Topics**
-+ [Step 1: Sign up to AWS](#getting-started-prereqs-signup)
-+ [Step 2: Create an IAM user account](#getting-started-prereqs-iam)
-+ [Step 3: Create an access key ID and secret access key](#getting-started-prereqs-keys)
-+ [Next steps](#getting-started-prereqs-next)
+* [Step 1: Sign up to AWS](#getting-started-prereqs-signup)
+* [Step 2: Create an IAM user account](#getting-started-prereqs-iam)
+  * Reason: 🧠root user should NOT be used, except eventually 🧠
+* [Step 3: Create an access key ID and secret access key](#getting-started-prereqs-keys)
+* [Next steps](#getting-started-prereqs-next)
 
 ## Step 1: Sign up to AWS<a name="getting-started-prereqs-signup"></a>
 
-If you do not have an AWS account, complete the following steps to create one\.
-
-**To sign up for an AWS account**
-
-1. Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)\.
-
-1. Follow the online instructions\.
-
-   Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
+* uses
+  * you do NOT have an AWS account
+* Open [https://portal\.aws\.amazon\.com/billing/signup](https://portal.aws.amazon.com/billing/signup)
 
 ## Step 2: Create an IAM user account<a name="getting-started-prereqs-iam"></a>
 
+* TODO:
 **To create an administrator user for yourself and add the user to an administrators group \(console\)**
 
 1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
@@ -100,8 +92,8 @@ The only time that you can view or download the secret access key is when you cr
 
 ## Next steps<a name="getting-started-prereqs-next"></a>
 
-After creating an AWS account, IAM credentials, and an IAM access key pair, to use the AWS CLI you can do one of the following: 
-+ [Install the latest release](getting-started-install.md) of the AWS CLI version 2 on your computer\.
-+ [Install a past release](getting-started-version.md) of the AWS CLI version 2 on your computer\.
-+ Access the AWS CLI version 2 from your computer [using a Docker image\.](install-cliv2-docker.md)
-+ Access the AWS CLI version 2 in the AWS console from your browser using AWS CloudShell\. For more information see the [AWS CloudShell User Guide](https://docs.aws.amazon.com/cloudshell/latest/userguide/)\.
+* ways to get access to AWS account -- via -- these access keys
+  * [Install the latest release of AWS CLI v2](getting-started-install.md)
+  * [Install a past release of AWS CLI](getting-started-version.md)
+  * [Docker image](install-cliv2-docker.md)
+  * AWS CloudShell | AWS console
