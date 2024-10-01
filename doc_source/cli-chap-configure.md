@@ -4,10 +4,18 @@
 
 # Configuring the AWS CLI<a name="cli-chap-configure"></a>
 
-This section explains how to configure the settings that the AWS Command Line Interface \(AWS CLI\) uses to interact with AWS\. These include your security credentials, the default output format, and the default AWS Region\.
+* goal
+  * configure the settings / AWS CLI use
+    * security credentials
+    * default output format
+    * default AWS Region
 
-**Note**  
-AWS requires that all incoming requests are cryptographically signed\. The AWS CLI does this for you\. The "signature" includes a date/time stamp\. Therefore, you must ensure that your computer's date and time are set correctly\. If you don't, and the date/time in the signature is too far off of the date/time recognized by the AWS service, AWS rejects the request\.
+* AWS requires
+  * 👁️ALL incoming requests are cryptographically signed 👁️
+    * made automatically by AWS CLI
+    * "signature" == date time stamp + ...
+      * -> ⚠️ your computer's date and time must set correctly ⚠️	
+        * else, AWS rejects the request 
 
 **Topics**
 + [Configuration basics](cli-configure-quickstart.md)
