@@ -4,9 +4,14 @@
 
 # Named profiles for the AWS CLI<a name="cli-configure-profiles"></a>
 
-A *named profile* is a collection of settings and credentials that you can apply to a AWS CLI command\. When you specify a profile to run a command, the settings and credentials are used to run that command\. Multiple *named profiles* can be stored in the `config` and `credentials` files\.
-
-You can specify one `default` profile that is used when no profile is explicitly referenced\. Other profiles have names that you can specify as a parameter on the command line for individual commands\. Alternatively, you can specify a profile in the `AWS\_PROFILE` environment variable which overrides the default profile for commands that run in that session\.
+* == collection of settings (".config") & credentials (".credentials") /
+  * MULTIPLE can be stored
+  * uses
+    * apply | AWS CLI command
+      * == a profile can be specified | running a command
+  * `default` profile can be specified
+  * TODO:
+  * Other profiles have names that you can specify as a parameter on the command line for individual commands\. Alternatively, you can specify a profile in the `AWS\_PROFILE` environment variable which overrides the default profile for commands that run in that session\.
 
 **Topics**
 + [Creating named profiles](#cli-configure-profiles-create)
