@@ -4,7 +4,10 @@
 
 # AWS CLI skeletons and input files<a name="cli-usage-skeleton"></a>
 
-Most of the AWS Command Line Interface \(AWS CLI\) commands accept all parameter inputs from a file\. These templates can be generated using the `generate-cli-skeleton` option\.
+* input files
+  * uses
+    * parameter inputs of MOST of AWS CLI commands  
+  * -- can be generated via the -- `generate-cli-skeleton` 
 
 **Topics**
 + [About AWS CLI skeletons and input files](#cli-usage-skeleton-about)
@@ -12,30 +15,29 @@ Most of the AWS Command Line Interface \(AWS CLI\) commands accept all parameter
 
 ## About AWS CLI skeletons and input files<a name="cli-usage-skeleton-about"></a>
 
-Most of the AWS Command Line Interface \(AWS CLI\) commands support the ability to accept all parameter inputs from a file using the `--cli-input-json` and `--cli-input-yaml` parameters\.
+* AWS CLI command's options to pass these input files
+  * `--cli-input-json`
+  * `--cli-input-yaml`
+* `--generate-cli-skeleton`
+  * AWS CLI command's option / generate a file in either JSON or YAML format / ALL of the available parameters that you can edit and fill in\
+* 👁️NOT ALL AWS CLI commands support the PREVIOUS options👁️
+  * _Example:_ [`aws s3` commands](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html)
+  * `aws serviceName commandName help`
+    * list the possible options / check if PREVIOUS are valid
 
-Those same commands helpfully provide the `--generate-cli-skeleton` parameter to generate a file in either JSON or YAML format with all of the parameters that you can edit and fill in\. Then you can run the command with the relevant `--cli-input-json` or `--cli-input-yaml` parameter and point to the filled\-in file\.
+    ```
+    $ aws iam list-users help
+    ...
+    SYNOPSIS
+              list-users
+              ...
+              [--cli-input-json | --cli-input-yaml]
+              ...
+              [--generate-cli-skeleton <value>]
+    ...
+    ```
 
-**Important**  
-Several AWS CLI commands don't map directly to individual AWS API operations, such as the [`aws s3` commands](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html)\. Such commands don't support either the `--generate-cli-skeleton` or `--cli-input-json` and `--cli-input-yaml` parameters described in this topic\. If you don't know whether a specific command supports these parameters, run the following command, replacing the *service* and *command* names with the ones you're interested in\.  
-
-```
-$ aws service command help
-```
-The output includes a `Synopsis` section that shows the parameters that the specified command supports\.  
-
-```
-$ aws iam list-users help
-...
-SYNOPSIS
-          list-users
-          ...
-          [--cli-input-json | --cli-input-yaml]
-          ...
-          [--generate-cli-skeleton <value>]
-...
-```
-
+* TODO:
 The `--generate-cli-skeleton` parameter causes the command not to run, but instead to generate and display a parameter template that you can customize and use as input on a later command\. The generated template includes all of the parameters that the command supports\.
 
 The `--generate-cli-skeleton` parameter accepts one of the following values:
@@ -303,11 +305,10 @@ LicenseSpecifications: # The license configurations.
 
 ------
 
-   In this example, we leave the `DryRun` parameter set to `true` to use the Amazon EC2 dry run feature\. This feature lets you safely test the command without actually creating or modifying any resources\. 
+* _Example:_ `DryRun=true` -> use Amazon EC2 dry run feature == test the command / NO resource is created or modified 
 
-1. Fill in the remaining values with values appropriate for your scenario\. In this example, we provide the instance type, key name, security group, and identifier of the Amazon Machine Image \(AMI\) to use\. This example assumes the default AWS Region\. The AMI `ami-dfc39aef` is a 64\-bit Amazon Linux image hosted in the `us-west-2` Region\. If you use a different Region, you must [find the correct AMI ID to use](http://aws.amazon.com/amazon-linux-ami/)\.
+* 1. Fill in the remaining values with values appropriate for your scenario\. In this example, we provide the instance type, key name, security group, and identifier of the Amazon Machine Image \(AMI\) to use\. This example assumes the default AWS Region\. The AMI `ami-dfc39aef` is a 64\-bit Amazon Linux image hosted in the `us-west-2` Region\. If you use a different Region, you must [find the correct AMI ID to use](http://aws.amazon.com/amazon-linux-ami/)\.
 
-------
 #### [ JSON ]
 
    ```
@@ -325,7 +326,6 @@ LicenseSpecifications: # The license configurations.
    }
    ```
 
-------
 #### [ YAML ]
 
    ```
@@ -339,39 +339,35 @@ LicenseSpecifications: # The license configurations.
      Enabled: true
    ```
 
-------
 
-1. Run the command with the completed parameters by passing the completed template file to either the `--cli-input-json` or \-\-`cli-input-yaml` parameter by using the `file://` prefix\. The AWS CLI interprets the path to be relative to your current working directory, so in the following example that displays only the file name with no path, it looks for the file directly in the current working directory\.
+* `--cli-input-json file://RelativePath` or `cli-input-yaml file://RelativePath` 
+  * path -- is relative to -- your current working directory
+  * _Example:_ file | current working directory & using dry run mode
 
-------
+
 #### [ JSON ]
 
    ```
    $ aws ec2 run-instances --cli-input-json file://ec2runinst.json
-   ```
 
-   ```
    A client error (DryRunOperation) occurred when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.
+   # == formed correctly the template -> use run mode
    ```
 
-------
+
 #### [ YAML ]
 
    ```
    $ aws ec2 run-instances --cli-input-yaml file://ec2runinst.yaml
-   ```
 
-   ```
    A client error (DryRunOperation) occurred when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.
+   # == formed correctly the template -> use run mode
    ```
 
 ------
 
-   The dry run error indicates that the JSON or YAML is formed correctly and that the parameter values are valid\. If other issues are reported in the output, fix them and repeat the previous step until the "Request would have succeeded" message is displayed\. 
+* set the `DryRun=false` == disable dry run
 
-1. Now you can set the DryRun parameter to false to disable dry run\.
-
-------
 #### [ JSON ]
 
    ```
@@ -389,7 +385,7 @@ LicenseSpecifications: # The license configurations.
    }
    ```
 
-------
+
 #### [ YAML ]
 
    ```
