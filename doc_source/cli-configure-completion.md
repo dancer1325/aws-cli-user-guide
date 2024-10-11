@@ -4,9 +4,11 @@
 
 # Command completion<a name="cli-configure-completion"></a>
 
-The AWS Command Line Interface \(AWS CLI\) includes a bash\-compatible command\-completion feature that enables you to use the **Tab** key to complete a partially entered command\. On most systems you need to configure this manually\.
-
-For information on the AWS CLI version 2 auto\-prompt feature instead, see [Having the AWS CLI prompt you for commands](cli-usage-parameters-prompting.md)\.
+* bash-compatible
+* allows
+  * completing a partially entered command -- via -- **Tab** key
+* NORMALLY, it needs to be configured manually
+* == [auto-prompt feature](cli-usage-parameters-prompting.md) | AWS CLI version 2
 
 **Topics**
 + [How it works](#cli-command-completion-about)
@@ -15,6 +17,7 @@ For information on the AWS CLI version 2 auto\-prompt feature instead, see [Havi
 
 ## How it works<a name="cli-command-completion-about"></a>
 
+* TODO:
 When you partially enter a command, parameter, or option, the command\-completion feature either automatically completes your command or displays a suggested list of commands\. To prompt command completion, you partially enter in a command and press the completion key, which is typically *Tab* in most shells\.
 
 The following examples show different ways that you can use command completion:
