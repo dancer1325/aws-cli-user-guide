@@ -69,84 +69,90 @@
 
 ## Set and view configuration settings<a name="cli-configure-files-methods"></a>
 
-* TODO:
-There are several ways to view and set your configuration settings in the files\.
+* ways to view and set your configuration settings files
+  * **`Credentials` and `config` file** -- via -- text editor
+    * [Where are configuration settings stored?](#cli-configure-files-where)
+  * **[aws configure](https://docs.aws.amazon.com/cli/latest/reference/configure/index.html)**  
+    * [Quick configuration with `aws configure`](cli-configure-quickstart.md#cli-configure-quickstart-config)
+    * allows
+      * set and view your
+        * credentials,
+        * Region
+        * output format  
 
-**`Credentials` and `config` file**  
-View and edit your settings by directly editing the `config` and `credentials` files in a text editor\. For more information see [Where are configuration settings stored?](#cli-configure-files-where)  
-To remove a setting, delete the corresponding setting in your `config` and `credentials` files\.
+    ```
+    $ aws configure
+    AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+    AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    Default region name [None]: us-west-2
+    Default output format [None]: json
+    ```
 
-**`[aws configure](https://docs.aws.amazon.com/cli/latest/reference/configure/index.html)`**  
-Run this command to quickly set and view your credentials, Region, and output format\. The following example shows sample values\.  
+  * **[aws configure set key value --profile profileName](https://docs.aws.amazon.com/cli/latest/reference/configure/set.html)**
+    * specify the key/value / profile  
 
-```
-$ aws configure
-AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-Default region name [None]: us-west-2
-Default output format [None]: json
-```
-For more information see [Quick configuration with `aws configure`](cli-configure-quickstart.md#cli-configure-quickstart-config)
+    ```
+    $ aws configure set region us-west-2 --profile integ
+    ```
 
-**`[aws configure set](https://docs.aws.amazon.com/cli/latest/reference/configure/set.html)`**  
-You can set any credentials or configuration settings using `aws configure set`\. Specify the profile that you want to view or modify with the `--profile` setting\.   
-For example, the following command sets the `region` in the profile named `integ`\.  
+    * if you want to remove -> use an `""` as the value
 
-```
-$ aws configure set region us-west-2 --profile integ
-```
-To remove a setting, use an empty string as the value, or manually delete the setting in your `config` and `credentials` files in a text editor\.  
+    ```
+    $ aws configure set cli_pager "" --profile integ
+    ```
 
-```
-$ aws configure set cli_pager "" --profile integ
-```
+  * **[aws configure get](https://docs.aws.amazon.com/cli/latest/reference/configure/get.html)**
+    * specify key / profile    
 
-**[https://docs.aws.amazon.com/cli/latest/reference/configure/get.html](https://docs.aws.amazon.com/cli/latest/reference/configure/get.html)**  
-You can retrieve any credentials or configuration settings you've set using `aws configure get`\. Specify the profile that you want to view or modify with the `--profile` setting\.   
-For example, the following command retrieves the `region` setting in the profile named `integ`\.  
+    ```
+    $ aws configure get region --profile integ   
+    us-west-2
+    ```
+    * if the output is empty == NOT explicitly set & uses the default value
 
-```
-$ aws configure get region --profile integ
-us-west-2
-```
-If the output is empty, the setting is not explicitly set and uses the default value\.
+  * **[aws configure import](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/import.html)**
+    * import `CSV` credentials /
+      * profile name -- matches the -- IAM user name
+      * .csv MUST contain the headers
+        * User Name
+        * Access key ID
+        * Secret access key
+      * During initial key pair creation, once you close the **Download \.csv file** dialog box -> you can NOT access your secret access key
+        * [Access key ID and secret access key](cli-configure-quickstart.md#cli-configure-quickstart-creds)
+        * -> if you need a `.csv` file -> you'll need to create one yourself
+        * if you do NOT remember it -> you need to create a new key pair
 
-**[https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/import.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/configure/import.html)**  
-Import `CSV` credentials generated from the AWS web console\. A CSV file is imported with the profile name matching the IAM user name\. The CSV file must contain the following headers\.  
-+ User Name
-+ Access key ID
-+ Secret access key
-During initial key pair creation, once you close the **Download \.csv file** dialog box, you cannot access your secret access key after you close the dialog box\. If you need a `.csv` file, you'll need to create one yourself with the required headers and your stored key pair information\. If you do not have access to your key pair information, you need to create a new key pair\.
+    ```
+    $ aws configure import --csv file://credentials.csv
+    ```
 
-```
-$ aws configure import --csv file://credentials.csv
-```
-For more information on key pairs, see [Access key ID and secret access key](cli-configure-quickstart.md#cli-configure-quickstart-creds)\.
+  * **[aws configure list](https://docs.aws.amazon.com/cli/latest/reference/configure/list.html)**
+    * list ALL configuration data (AWS CLI name, their values, where it's stored) / profile
+    * `--profile profileName`
+      * if you want to specify the profile
 
-**[https://docs.aws.amazon.com/cli/latest/reference/configure/list.html](https://docs.aws.amazon.com/cli/latest/reference/configure/list.html)**  
-To list all configuration data, use the `aws configure list` command\. This command displays the AWS CLI name of all settings you've configured, their values, and where the configuration was retrieved from\.  
+    ```
+    $ aws configure list
+          Name                    Value             Type    Location
+          ----                    -----             ----    --------
+       profile                <not set>             None    None
+    access_key     ****************ABCD  shared-credentials-file    
+    secret_key     ****************ABCD  shared-credentials-file    
+        region                us-west-2             env    AWS_DEFAULT_REGION
+    ```
 
-```
-$ aws configure list
-      Name                    Value             Type    Location
-      ----                    -----             ----    --------
-   profile                <not set>             None    None
-access_key     ****************ABCD  shared-credentials-file    
-secret_key     ****************ABCD  shared-credentials-file    
-    region                us-west-2             env    AWS_DEFAULT_REGION
-```
+  * **[aws configure list-profiles.html](https://docs.aws.amazon.com/cli/latest/reference/configure/list-profiles.html)**
+    * list ALL your profile names  
 
-**[https://docs.aws.amazon.com/cli/latest/reference/configure/list-profiles.html](https://docs.aws.amazon.com/cli/latest/reference/configure/list-profiles.html)**  
-To list all your profile names, use the `aws configure list-profiles` command\.  
-
-```
-$ aws configure list-profiles
-default
-test
-```
+    ```
+    $ aws configure list-profiles
+    default
+    test
+    ```
 
 ## Supported `config` file settings<a name="cli-configure-files-settings"></a>
 
+* TODO:
 **Topics**
 + [Global settings](#cli-configure-files-global)
 + [S3 Custom command settings](#cli-configure-files-s3)
