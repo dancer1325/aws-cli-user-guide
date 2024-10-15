@@ -152,16 +152,14 @@
 
 ## Supported `config` file settings<a name="cli-configure-files-settings"></a>
 
-* TODO:
 **Topics**
 + [Global settings](#cli-configure-files-global)
 + [S3 Custom command settings](#cli-configure-files-s3)
 
-The following settings are supported in the `config` file\. The values listed in the specified \(or default\) profile are used unless they are overridden by the presence of an environment variable with the same name, or a command line option with the same name\. For more information on what order settings take precendence, see [Configuration settings and precedence](cli-configure-quickstart.md#cli-configure-quickstart-precedence)
-
 ### Global settings<a name="cli-configure-files-global"></a>
 
-* `aws\_access\_key\_id` *  
+* `aws\_access\_key\_id`
+  * TODO:   
 Specifies the AWS access key used as part of the credentials to authenticate the command request\. Although this can be stored in the `config` file, we recommend that you store this in the `credentials` file\.   
 Can be overridden by the `AWS_ACCESS_KEY_ID` environment variable\. You can't specify the access key ID as a command line option\.  
 
@@ -367,21 +365,26 @@ Specifies a named profile with long\-term credentials that the AWS CLI can use t
 source_profile = production-profile
 ```
 
-*`sso\_account\_id`*  
-Specifies the AWS account ID that contains the IAM role with the permission that you want to grant to the associated IAM Identity Center user\.  
-This setting does not have an environment variable or command line option\.  
+* `sso_account_id`
+  * = AWS account ID / contains the IAM role / you -- want to grant to the associated -- IAM Identity Center user
+  * NOT possible to specify -- via --
+    * environment variable or
+    * CL option  
 
-```
-sso_account_id = 123456789012
-```
+    ```
+    sso_account_id = 123456789012
+    ```
 
-*`sso\_region` *  
-Specifies the AWS Region that contains the AWS access portal host\. This is separate from, and can be a different Region than the default CLI `region` parameter\.  
-This setting does not have an environment variable or command line option\.  
+* `sso\_region`
+  * == AWS Region / contains the AWS access portal host
+    * != concept that `region`   
+  * NOT possible to specify -- via --
+    * environment variable or
+    * CL option   
 
-```
-aws_sso_region = us_west-2
-```
+    ```
+    aws_sso_region = us_west-2
+    ```
 
 *`sso\_role\_name` *  
 Specifies the friendly name of the IAM role that defines the user's permissions when using this profile\.   
@@ -391,15 +394,21 @@ This setting does not have an environment variable or command line option\.
 sso_role_name = ReadAccess
 ```
 
-*`sso\_start\_url`*  
-Specifies the URL that points to the organization's AWS access portal\. The AWS CLI uses this URL to establish a session with the IAM Identity Center service to authenticate its users\. To find your AWS access portal URL, use one of the following:  
-+ Open your invitation email, the AWS access portal URL is listed\.
-+ Open the AWS IAM Identity Center \(successor to AWS Single Sign\-On\) console at [https://console\.aws\.amazon\.com/singlesignon/](https://console.aws.amazon.com/singlesignon/)\. The AWS access portal URL is listed in your settings\.
-This setting does not have an environment variable or command line option\.   
+* `sso_start_url`
+  * == URL / -- points to the -- organization's AWS access portal
+    * ways to find them
+      * open your invitation email to the AWS organization
+      * open the AWS IAM Identity Center console & check your settings 
+  * uses
+    * by the AWS CLI -- to establish a -- session with the IAM Identity Center service
+      * -> authenticate its users
+  * NOT possible to specify -- via --
+    * environment variable or
+    * CL option 
 
-```
-sso_start_url = https://my-sso-portal.awsapps.com/start
-```
+    ```
+    sso_start_url = https://my-sso-portal.awsapps.com/start
+    ```
 
 *`web\_identity\_token\_file`*  
 Specifies the path to a file that contains an OAuth 2\.0 access token or OpenID Connect ID token that is provided by an identity provider\. The AWS CLI loads the contents of this file and passes it as the `WebIdentityToken` argument to the `AssumeRoleWithWebIdentity` operation\.  
