@@ -386,13 +386,15 @@ source_profile = production-profile
     aws_sso_region = us_west-2
     ```
 
-*`sso\_role\_name` *  
-Specifies the friendly name of the IAM role that defines the user's permissions when using this profile\.   
-This setting does not have an environment variable or command line option\.  
+* `sso_role_name`
+  * == friendly name of the IAM role / defines the user's permissions
+  * NOT possible to specify -- via --
+    * environment variable or
+    * CL option .  
 
-```
-sso_role_name = ReadAccess
-```
+    ```
+    sso_role_name = ReadAccess
+    ```
 
 * `sso_start_url`
   * == URL / -- points to the -- organization's AWS access portal
