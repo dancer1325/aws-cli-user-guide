@@ -160,25 +160,37 @@ By default, the AWS CLI version 1 sends AWS STS requests to the global AWS STS e
 
 ### `ecr get-login` removed and replaced with `ecr get-login-password`<a name="cliv2-migration-ecr-get-login"></a>
 
-The AWS CLI version 2 replaces the command `aws ecr get-login` with the `aws ecr get-login-password` command that improves automated integration with container authentication\. 
+* `aws ecr get-login` -- replaced by -- `aws ecr get-login-password`
+  * benefits
+    * improve
+      * automated integration -- with -- container authentication
+      * compatibility -- with -- `docker login`
+    * reduces the risk of exposing your credentials |
+      * process list
+      * shell history
+      * other log files
+  * _Example:_
+  
+    ```
+    # 1. ecr get-login           retrieves a password
+    $ (aws ecr get-login --no-include-email)
+    
+    # 2. get-login-password
+    # pipe the result to docker login -- passing by the -- `--password-stdin`
+    $ aws ecr get-login-password | docker login --username AWS --password-stdin MY-REGISTRY-URL
+    ```
 
-The `aws ecr get-login-password` command reduces the risk of exposing your credentials in the process list, shell history, or other log files\. It also improves compatibility with the `docker login` command for better automation\.
+* `aws ecr get-login-password`
+  * [get-login-password](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html)
+  * requirements
+    * AWS CLI v1.17.10+ & v2
+  * recommendations
+    * ⭐pipe to the `docker login` ⭐
+      * Reason: 🧠reduce the risk of exposing the password | shell history or logs 🧠
+* `aws ecr get-login`
+  * requirements
+    * AWS CLI v1
 
-The `aws ecr get-login-password` command is available in the AWS CLI version 1\.17\.10 and later, and the AWS CLI version 2\. The earlier `aws ecr get-login` command is still available in the AWS CLI version 1 for backward compatibility\. 
-
-With the `aws ecr get-login-password` command, you can replace the following code that retrieves a password\.
-
-```
-$ (aws ecr get-login --no-include-email)
-```
-
-To reduce the risk of exposing the password to the shell history or logs, use the following example command instead\. In this example, the password is piped directly to the `docker login` command, where it is assigned to the password parameter by the `--password-stdin` option\.
-
-```
-$ aws ecr get-login-password | docker login --username AWS --password-stdin MY-REGISTRY-URL
-```
-
-For more information, see [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ecr/get-login-password.html) in the *AWS CLI version 2 Reference Guide*\.
 
 ### AWS CLI version 2 support for plugins is changing<a name="cliv2-migration-profile-plugins"></a>
 
