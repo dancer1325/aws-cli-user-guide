@@ -4,7 +4,9 @@
 
 # New features and changes in AWS CLI version 2<a name="cliv2-migration-changes"></a>
 
-This topic describes new features and changes in behavior between AWS CLI version 1 and AWS CLI version 2\. These changes might require you to update your scripts or commands to get the same behavior in version 2 as you did in version 1\.
+* features & changes between AWS CLI v1 -- & -- AWS CLI v2
+  * possible impacts
+    * 👁️require you to update your scripts or commands 👁️
 
 **Topics**
 + [AWS CLI version 2 new features](#cliv2-migration-changes-features)
