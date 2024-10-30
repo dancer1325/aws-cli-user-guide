@@ -294,18 +294,20 @@ These environment variables currently apply only to the assume role with web ide
 
 ## Clearing cached credentials<a name="cli-configure-role-cache"></a>
 
-When you use a role, the AWS CLI caches the temporary credentials locally until they expire\. The next time you try to use them, the AWS CLI attempts to renew them on your behalf\. 
+* AWS CLI -- caches the -- temporary (until, expire) credentials | locally 
+* ⚠️if your role's temporary credentials -- are -- [revoked](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html) -> they are NOT renewed automatically ⚠️
+  * alternative
+    * delete the cache
+      * Reason: 🧠 force the AWS CLI -- to retrieve -- new credentials🧠
 
-If your role's temporary credentials are [revoked](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html), they are not renewed automatically, and attempts to use them fail\. However, you can delete the cache to force the AWS CLI to retrieve new credentials\.
-
-**Linux or macOS**
-
-```
-$ rm -r ~/.aws/cli/cache
-```
-
-**Windows**
-
-```
-C:\> del /s /q %UserProfile%\.aws\cli\cache
-```
+        **Linux or macOS**
+        
+        ```
+        $ rm -r ~/.aws/cli/cache
+        ```
+        
+        **Windows**
+        
+        ```
+        C:\> del /s /q %UserProfile%\.aws\cli\cache
+        ```
